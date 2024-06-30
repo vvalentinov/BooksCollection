@@ -1,0 +1,25 @@
+name: Build and Unit Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build_and_unit-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    - name: Setup Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: 'npm'
+    - name: Install NPM Dependencies
+      run: npm install
+    - name: Execute Unit Tests
+      run: npm run test:unit
+    - name: Display SoftUni UserName
+      run: echo 'Valentin_104'
